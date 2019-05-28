@@ -5,7 +5,7 @@
   "author": "TuyetVo",
   "license": "ISC",
   "engines": {
-    "node": ">=6.13.0"
+    "node": ">=8.10.0"
   },
   "scripts": {
     "seed-db": "node ./database/data/seed.js",
@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "async": "^3.0.1",
+    "chai": "^4.2.0",
     "express": "^4.17.0",
     "faker": "^4.1.0",
     "mongodb": "^3.2.4",
@@ -29,6 +30,7 @@
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor.git",
+    "mocha": "^6.1.4",
     "mongoose-seedr": "^0.4.4",
     "webpack-cli": "^3.3.2"
   },
