@@ -29,7 +29,7 @@ jobs:
       - run: ps aux
       - run:
           name: Mocha test
-          command: npm test:mocha
+          command: npm test
 
 #workflows:
   #version: 2

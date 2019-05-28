@@ -38,16 +38,16 @@ describe('Test', () => {
       Review.create(sampleUser, done);
     });
   });
+});
 
-  it('should seed database', (done) => {
-    done();
-  })
+//   it('should seed database', (done) => {
+//     done();
+//   })
 
-  it('should have correct keys', (done) => {
-    done();
-  })
+//   it('should have correct keys', (done) => {
+//     done();
+//   })
 
-  it('should contain all properties', (done) => {
-    done();
-  })
-})
+//   it('should contain all properties', (done) => {
+//     done();
+//   })
