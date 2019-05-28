@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 
 /***********************************************/
 //This route should send back the reviews for a game by the game ID
-app.get('/', function (req, res) {
+app.get('/game_id', function (req, res) {
   res.status(200).send(reviewComment());
 });
 
@@ -27,7 +27,7 @@ const reviewComment = function() {
 
 /***********************************************/
 //This route should take the game ID and get the reviews
-app.post('/', function (req, res) {
+app.post('/game_id', function (req, res) {
   res.status(201);
 });
 
