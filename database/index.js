@@ -1,31 +1,35 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/reviews', {useNewUrlParser: true});
+mongoose.connect('mongodb://localhost:27017/usersgamereview', { useNewUrlParser: true });
 mongoose.Promise = global.Promise;
-var db = mongoose.connection;
+const db = mongoose.connection;
   db.on('error', console.error.bind(console, 'connection error:'));
   db.once('open', function() {
   console.log('Connected!');
   });
 
-let reviewSchema = new mongoose.Schema({
+
+const userSchema = new mongoose.Schema({
   profile_id: Number,
   username: String,
-  comments: String,
-  recommended: Boolean
+  userIcon: Number,
+  products_owned: Number,
+  number_of_reviews: Number,
+  reviews: [{
+              game_id: Number,
+              recommended: Boolean,
+              hours_played: Number,
+              datePosted: Date,
+              comment: String
+            }]
 });
 
-let Review = mongoose.model('Review', reviewSchema);
+const User = mongoose.model('User', userSchema);
 
-let save = (data) => {
+// let query = (gameID) => {
+//   return User.find({game_id: gameID}).exec().then((review) => {
+//     return review;
+//   })
+// }
 
-};
-
-
-module.exports.save = save;
-
-// profile_id: Number,
-// username: String,
-// postedDate: Date,
-// comments: String,
-// recommended: Boolean,
-// language: String
+// module.exports.query = query;
+module.exports.User = User;
