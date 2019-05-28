@@ -34,6 +34,7 @@
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor.git",
     "mocha": "^6.1.4",
     "mongoose-seedr": "^0.4.4",
+    "nodemon": "^1.19.1",
     "webpack-cli": "^3.3.2"
   },
   "version": "1.0.0",
