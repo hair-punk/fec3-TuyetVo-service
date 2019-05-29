@@ -8,22 +8,22 @@ const db = mongoose.connection;
   });
 
 
-const userSchema = new mongoose.Schema({
-  profile_id: Number,
-  username: String,
-  userIcon: Number,
-  products_owned: Number,
-  number_of_reviews: Number,
-  reviews: [{
-              game_id: Number,
-              recommended: Boolean,
-              hours_played: Number,
-              datePosted: Date,
-              comment: String
-            }]
+const reviewSchema = new mongoose.Schema({
+  game_id: Number,
+  recommended: Boolean,
+  hours_played: Number,
+  datePosted: Date,
+  comment: String,
+  user: [{
+          profile_id: Number,
+          username: String,
+          user_icon: Number,
+          products_owned: Number,
+          number_of_reviews: Number,
+          }]
 });
 
-const User = mongoose.model('User', userSchema);
+const Review = mongoose.model('Review', reviewSchema);
 
 // let query = (gameID) => {
 //   return User.find({game_id: gameID}).exec().then((review) => {
@@ -32,4 +32,4 @@ const User = mongoose.model('User', userSchema);
 // }
 
 // module.exports.query = query;
-module.exports.User = User;
+module.exports.Review = Review;

@@ -18,7 +18,7 @@ describe('Test', () => {
 
   beforeEach((done) => {
     clearDB(() => {
-      var sampleUser = [
+      var test = [
         {
           profile_id: 10,
           username: 'KarateChop',
@@ -29,24 +29,23 @@ describe('Test', () => {
                     game_id: 2,
                     recommended: true,
                     hours_played: 300,
-                    datePosted: 2019/05/01,
                     comment: 'jashdwiaj ijdfisj oefsjfs jfisjefj'
                     }]
         }
       ];
-      done();
+      Review.create(test, done);
     });
   });
 
-//   it('should seed database', (done) => {
-//     done();
-//   });
+  // it('should seed database', (done) => {
+  //   done();
+  // });
 
-//   it('should have correct keys', (done) => {
-//     done();
-//   });
+  // it('should have correct keys', (done) => {
+  //   done();
+  // });
 
-//   it('should contain all properties', (done) => {
-//     done();
-//   });
+  // it('should contain all properties', (done) => {
+  //   done();
+  // });
 });
