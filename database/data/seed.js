@@ -15,7 +15,7 @@ const reviewSchema = new mongoose.Schema({
           username: String,
           user_icon: Number,
           products_owned: Number,
-          number_of_reviews: Number,
+          number_of_reviews: Number
           }]
 });
 
