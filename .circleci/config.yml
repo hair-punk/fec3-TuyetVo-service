@@ -1,0 +1,44 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/tmp
+    docker:
+      - image: circleci/node:8.10.0
+      - image: mongo:latest
+    environment:
+      - MONGO_URL: 'mongodb://localhost:27017/usersgamereview'
+    steps:
+      - run:
+          name: Update npm
+          command: npm update
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: Install npm
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+      - run:
+          name: Start server
+          command: npm start
+          background: true
+      - run: sleep 2s
+      - run: ps aux
+      - run:
+          name: Jest test
+          command: npm test
+
+#workflows:
+  #version: 2
+  #build_and_test:
+    #jobs:
+      #- build
+      #- test:
+          #requires:
+            #- build
+          #filters:
+            #branches:
+              #only: master
