@@ -19,13 +19,8 @@ const reviewSchema = new mongoose.Schema({
           username: String,
           user_icon: Number,
           products_owned: Number,
-<<<<<<< HEAD
-          number_of_reviews: Number,
-          }]
-=======
           number_of_reviews: Number
         }]
->>>>>>> master
 });
 
 const Review = mongoose.model('Review', reviewSchema);

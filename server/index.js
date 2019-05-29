@@ -13,10 +13,6 @@ app.use(bodyParser.urlencoded({extended: true}))
 
 /***********************************************/
 //This route should send back the reviews for a game by the game ID
-<<<<<<< HEAD
-app.get('/game_id', function (req, res) {
-  res.status(200).send(reviewComment());
-=======
 app.get('/:gameid', (req, res) => {
   var id = req.params.gameid;
   Review.find({game_id: id}, (err, data) => {
@@ -26,7 +22,6 @@ app.get('/:gameid', (req, res) => {
       res.status(200).json(data);
     }
   });
->>>>>>> master
 });
 
 const reviewComment = function() {
@@ -41,11 +36,7 @@ const reviewComment = function() {
 
 /***********************************************/
 //This route should take the game ID and get the reviews
-<<<<<<< HEAD
-app.post('/game_id', function (req, res) {
-=======
 app.post('/', (req, res) => {
->>>>>>> master
   res.status(201);
 });
 

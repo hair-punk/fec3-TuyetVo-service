@@ -28,11 +28,7 @@ jobs:
       - run: sleep 2s
       - run: ps aux
       - run:
-<<<<<<< HEAD
-          name: Mocha test
-=======
           name: Jest test
->>>>>>> master
           command: npm test
 
 #workflows:
