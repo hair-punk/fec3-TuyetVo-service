@@ -11,13 +11,16 @@ const db = mongoose.connection;
 const reviewSchema = new mongoose.Schema({
   game_id: Number,
   recommended: Boolean,
-  hours_played: Number,
-  datePosted: Date,
+  steamPurchase: Boolean,
+  dayPosted: Number,
   comment: String,
+  helpfulComment: Number,
+  funnyComment: Number,
   user: [{
           profile_id: Number,
           username: String,
-          user_icon: Number,
+          user_icon: String,
+          hours_played: Number,
           products_owned: Number,
           number_of_reviews: Number
         }]

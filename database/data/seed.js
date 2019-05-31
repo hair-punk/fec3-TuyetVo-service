@@ -7,27 +7,42 @@ const faker = require('faker');
 const reviewSchema = new mongoose.Schema({
   game_id: Number,
   recommended: Boolean,
-  hours_played: Number,
-  datePosted: Date,
+  steamPurchase: Boolean,
+  dayPosted: Number,
   comment: String,
+  helpfulComment: Number,
+  funnyComment: Number,
   user: [{
           profile_id: Number,
           username: String,
-          user_icon: Number,
+          user_icon: String,
+          hours_played: Number,
           products_owned: Number,
           number_of_reviews: Number
-          }]
+        }]
 });
 
 const Review = mongoose.model('Review', reviewSchema);
+
+//User Icon images
+const getUserIcon = () => {
+
+  const userIcons = ["https://userreviewicons.s3.us-east-2.amazonaws.com/1.jpg", "https://userreviewicons.s3.us-east-2.amazonaws.com/2.jpg", "https://userreviewicons.s3.us-east-2.amazonaws.com/3.jpg", "https://userreviewicons.s3.us-east-2.amazonaws.com/4.jpg", "https://userreviewicons.s3.us-east-2.amazonaws.com/5.jpg", "https://userreviewicons.s3.us-east-2.amazonaws.com/6.jpg", "https://userreviewicons.s3.us-east-2.amazonaws.com/7.jpg", "https://userreviewicons.s3.us-east-2.amazonaws.com/8.jpg", "https://userreviewicons.s3.us-east-2.amazonaws.com/9.jpg", "https://userreviewicons.s3.us-east-2.amazonaws.com/10.jpg", "https://userreviewicons.s3.us-east-2.amazonaws.com/11.jpg", "https://userreviewicons.s3.us-east-2.amazonaws.com/12.jpg", "https://userreviewicons.s3.us-east-2.amazonaws.com/13.jpg", "https://userreviewicons.s3.us-east-2.amazonaws.com/14.jpg", "https://userreviewicons.s3.us-east-2.amazonaws.com/15.jpg", "https://userreviewicons.s3.us-east-2.amazonaws.com/16.jpg", "https://userreviewicons.s3.us-east-2.amazonaws.com/17.jpg", "https://userreviewicons.s3.us-east-2.amazonaws.com/18.jpg", "https://userreviewicons.s3.us-east-2.amazonaws.com/19.jpg", "https://userreviewicons.s3.us-east-2.amazonaws.com/20.jpg"];
+
+  return userIcons[Math.floor(Math.random()* 21)];
+};
+
 
 //Create individual reviews
 const createReview = () => {
   let comment = {};
   comment.gameid = faker.random.number({min: 1, max: 100});
   comment.recommend = faker.random.boolean();
-  comment.date = faker.date.recent();
+  comment.dateDay = faker.random.number({min: 5, max: 30});
+  comment.purchase = faker.random.boolean();
   comment.randomReview = faker.lorem.paragraph();
+  comment.helpful = faker.random.number(250);
+  comment.funny = faker.random.number(250);
   return comment;
 };
 
@@ -35,7 +50,7 @@ const createReview = () => {
 const userTemplate = (num) => {
   let user = {};
   user.userID = faker.random.number({min: 1, max: num});
-  user.userIcon = user.id;
+  user.userIcon = getUserIcon();
   user.username = faker.internet.userName();
   user.hoursPlayed = faker.random.number({min: 1, max: 2000});
   user.productsOwned = faker.random.number({min: 1, max: 1000});
@@ -46,18 +61,22 @@ const userTemplate = (num) => {
 
 //Create new user entry- seed DB
 const seed = () => {
-  for (var i = 0; i < 100; i++) {
+  for (var i = 0; i < 200; i++) {
     var reviewEntry = createReview();
     var userEntry = userTemplate(20);
     var newReview = new Review ({
       game_id: reviewEntry.gameid,
       recommended: reviewEntry.recommend,
-      datePosted: reviewEntry.date,
+      dayPosted: reviewEntry.dateDay,
+      steamPurchase: reviewEntry.purchase,
       comment: reviewEntry.randomReview,
+      helpfulComment: reviewEntry.helpful,
+      funnyComment: reviewEntry.funny,
       user: [{
             profile_id: userEntry.userID,
             username: userEntry.username,
             user_icon: userEntry.userIcon,
+            hours_played: userEntry.hoursPlayed,
             products_owned: userEntry.productsOwned,
             number_of_reviews: userEntry.numOfReviews
           }]
@@ -67,7 +86,7 @@ const seed = () => {
       if (err) {
         console.log(err);
       }
-      if (i === 99) {
+      if (i === 199) {
         mongoose.disconnect();
       }
     })
@@ -77,6 +96,7 @@ const seed = () => {
 
 seed();
 //db.collection.drop() -to drop db after seeding
+
 
 
 // //Async: Open/close database for seeding
