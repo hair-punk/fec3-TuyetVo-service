@@ -25,11 +25,5 @@ const reviewSchema = new mongoose.Schema({
 
 const Review = mongoose.model('Review', reviewSchema);
 
-// let query = (gameID) => {
-//   return User.find({game_id: gameID}).exec().then((review) => {
-//     return review;
-//   })
-// }
 
-// module.exports.query = query;
 module.exports.Review = Review;

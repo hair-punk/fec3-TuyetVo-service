@@ -1,34 +1,25 @@
 const path = require("path");
-const webpack = require("webpack");
+const SRC_DIR = path.join(__dirname, "/client/src");
+const DIST_DIR = path.join(__dirname, "/client/dist");
+
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: `${SRC_DIR}/index.jsx`,
   mode: "development",
+  output: {
+    filename: "bundle.js",
+    path: DIST_DIR
+  },
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
-        exclude: /(node_modules|bower_components)/,
+        test: /\.jsx?/,
+        include: SRC_DIR,
         loader: "babel-loader",
-        options: { presets: ["@babel/env"] }
-      },
-      {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader"]
+        query: {
+          presets: ["@babel/preset-react"]
+        }
       }
     ]
-  },
-  resolve: { extensions: ["*", ".js", ".jsx"] },
-  output: {
-    path: path.resolve(__dirname, "dist/"),
-    publicPath: "/dist/",
-    filename: "bundle.js"
-  },
-  devServer: {
-    contentBase: path.join(__dirname, "public/"),
-    port: 3007,
-    publicPath: "http://localhost:3007/usersgamereview/",
-    hotOnly: true
-  },
-  plugins: [new webpack.HotModuleReplacementPlugin()]
-}
+  }
+};
