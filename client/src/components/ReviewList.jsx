@@ -7,19 +7,19 @@ const ReviewList = (props) => {
   return (<div>
     <ul>
       <Title className="user_review_header">Most Helpful Reviews
-        <Past30Day class="most_helper_days">In the past 30 days</Past30Day>
+        <Past30Day className="most_helper_days">In the past 30 days</Past30Day>
       </Title>
       {props.reviews.map(review =>
       <Container>
         <ReviewBoxLeft>
-          <img src="https://s3.us-east-2.amazonaws.com/userreviewicons/1.jpg" width="36" height="36"></img>
+          <img src={review.user[0].user_icon} width="36" height="36"></img>
           <UserCol>{review.user[0].username}
           <ProductsOwnedNReviews>{review.user[0].products_owned} products in account</ProductsOwnedNReviews>
           <NumberofReviews>{review.user[0].number_of_reviews} reviews</NumberofReviews>
           </UserCol>
         </ReviewBoxLeft>
         <div>
-          <ThumbRecommend class="recommend_thumb">
+          <ThumbRecommend className="recommend_thumb">
             {review.recommended ? (
               <div><img src="https://steamstore-a.akamaihd.net/public/shared/images/userreviews/icon_thumbsUp_v6.png" width="43" height="40"></img></div>
               ) : (
@@ -34,14 +34,14 @@ const ReviewList = (props) => {
             )}
           </div>
           <HoursPlayed>
-            {review.user[0].hours_played} 10.5 hrs on record
+            {review.user[0].hours_played} hrs on record
           </HoursPlayed>
-        <DatePosted>POSTED: {review.datePosted}</DatePosted>
+        <DatePosted>POSTED: MAY {review.dayPosted}</DatePosted>
         <ReviewComment>{review.comment}</ReviewComment>
         <SeperationLine>
 					&nbsp;
 				</SeperationLine>
-        <ButtonBox class="Helpful?">
+        <ButtonBox className="Helpful?">
         <Wasthishelpful>Was this review helpful?</Wasthishelpful>
         <YesButton>
           <YesFont>
@@ -60,8 +60,8 @@ const ReviewList = (props) => {
         </FunnyButton>
         </ButtonBox>
         <PeopleFound>
-          207 people found this review helpful<br></br>
-          25 people found this review funny<br></br>
+          {review.helpfulComment} people found this review helpful<br></br>
+          {review.funnyComment} people found this review funny<br></br>
         </PeopleFound>
         <div>
 					&nbsp;
@@ -74,13 +74,6 @@ const ReviewList = (props) => {
 
 export default ReviewList;
 
-const ReviewSection = styled.div`
-  margin: 8px 0 13px;
-  display: block;
-  background: rgba( 0, 0, 0, 0.2 );
-  width: 400px;
-  height: 40px;
-`;
 
 const ThumbRecommend = styled.div`
   margin: 8px 0 13px;
@@ -202,13 +195,6 @@ const DatePosted = styled.div`
   opacity: 0.8;
 `;
 
-const ReviewBoxRight = styled.div`
-  float: left;
-  width: 616px;
-  height: 321px;
-  position: relative;
-`;
-
 const ReviewBoxLeft = styled.div`
   width: 200px;
   height: 60px;
@@ -225,7 +211,6 @@ const Container = styled.div`
   background-position: top left;
   width: 616px;
   height: auto;
-
   position: relative;
 `;
 

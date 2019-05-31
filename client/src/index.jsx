@@ -17,7 +17,7 @@ class App extends React.Component {
   }
 
   get() {
-    axios.get("http://localhost:3007/3")
+    axios.get("http://localhost:3007/50")
       .then(res => {
         console.log(res)
         const reviews = res.data;
