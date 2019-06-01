@@ -1,8 +1,6 @@
 const express = require('express');
 const { Review } = require('../database/index');
 const bodyParser = require('body-parser');
-const url = 'mongodb://localhost:3007/';
-const faker = require('faker');
 
 let app = express();
 
@@ -24,18 +22,9 @@ app.get('/:gameid', (req, res) => {
   });
 });
 
-const reviewComment = function() {
-  const commentArr = [];
-
-  for (var i = 0; i < Math.floor(Math.random() * 11); i++) {
-    commentArr.push(faker.fake('{{lorem.paragraph}}'));
-  }
-  console.log(commentArr.length);
-  return commentArr;
-};
 
 /***********************************************/
-//This route should take the game ID and get the reviews
+//This route should post new reviews
 app.post('/', (req, res) => {
   res.status(201);
 });
