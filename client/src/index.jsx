@@ -13,11 +13,11 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.get();
+    this.get(window.location.pathname);
   }
 
   get() {
-    axios.get("http://localhost:3007/50")
+    axios.get(`http://localhost:3007/50`)
       .then(res => {
         console.log(res)
         const reviews = res.data;
