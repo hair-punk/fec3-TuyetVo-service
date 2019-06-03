@@ -36,8 +36,8 @@ const reviewComment = function() {
 
 /***********************************************/
 //This route should take the game ID and get the reviews
-app.post('/', (req, res) => {
-  res.status(201);
+app.post('/:gameid', (req, res) => {
+
 });
 
 let port = 3007;
