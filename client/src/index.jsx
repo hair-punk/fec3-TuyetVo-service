@@ -19,7 +19,7 @@ class App extends React.Component {
   }
 
   get() {
-    axios.get("http://localhost:3007/50")
+    axios.get("http://localhost:3007/57")
       .then(res => {
         console.log(res)
         const reviews = res.data;
@@ -34,9 +34,9 @@ class App extends React.Component {
   }
 
   submit(data) {
-    console.log(data, "submit data hrere");
     axios.post("http://localhost:3007", data)
       .then(res => {
+        this.get();
         console.log(res);
       })
       .catch(err => {
