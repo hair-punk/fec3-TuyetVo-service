@@ -24,9 +24,17 @@ app.get('/:gameid', (req, res) => {
 
 
 /***********************************************/
-//This route should post new reviews
+//This route should post new review
 app.post('/', (req, res) => {
-  res.status(201);
+  console.log(req.body, "req.body here");
+  const newReview = new Review(req.body);
+  newReview.save((err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.status(201);
+    }
+  })
 });
 
 let port = 3007;

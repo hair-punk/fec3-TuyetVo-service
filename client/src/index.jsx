@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import ReviewList from './components/ReviewList.jsx';
+import CommentBox from './components/CommentBox.jsx';
 
 
 class App extends React.Component {
@@ -10,6 +11,7 @@ class App extends React.Component {
     this.state = {
       reviews: []
     }
+    this.submit = this.submit.bind(this);
   }
 
   componentDidMount() {
@@ -17,11 +19,25 @@ class App extends React.Component {
   }
 
   get() {
-    axios.get(`http://localhost:3007/50`)
+    axios.get("http://localhost:3007/57")
       .then(res => {
         console.log(res)
         const reviews = res.data;
+        reviews.sort((a, b) => {
+          return b.helpfulComment - a.helpfulComment;
+        })
         this.setState({reviews})
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
+  submit(data) {
+    axios.post("http://localhost:3007", data)
+      .then(res => {
+        this.get();
+        console.log(res);
       })
       .catch(err => {
         console.log(err);
@@ -31,6 +47,7 @@ class App extends React.Component {
   render() {
     return (
     <div className="app">
+      <CommentBox submitReview={this.submit}/>
       <ReviewList reviews={this.state.reviews}/>
     </div>)
   }
