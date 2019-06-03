@@ -15,7 +15,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.get();
+    this.get(window.location.pathname);
   }
 
   get() {
