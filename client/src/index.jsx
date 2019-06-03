@@ -23,6 +23,9 @@ class App extends React.Component {
       .then(res => {
         console.log(res)
         const reviews = res.data;
+        reviews.sort((a, b) => {
+          return b.helpfulComment - a.helpfulComment;
+        })
         this.setState({reviews})
       })
       .catch(err => {
@@ -31,14 +34,10 @@ class App extends React.Component {
   }
 
   submit(data) {
-    console.log('posted');
+    console.log(data, "submit data hrere");
     axios.post("http://localhost:3007", data)
       .then(res => {
         console.log(res);
-        const reviews = req.body;
-        reviews.sort((a, b) => {
-          return b.helpfulComment - a.helpfulComment;
-        })
       })
       .catch(err => {
         console.log(err);
