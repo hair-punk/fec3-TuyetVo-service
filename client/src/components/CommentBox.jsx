@@ -44,7 +44,7 @@ class CommentBox extends React.Component {
     return (
       <ReviewContainer>
         <TitleHeader> Write a review</TitleHeader>
-        <PleaseDescribe>Please describe what you like or disliked about this game and whether you recommen it to others.<br></br>
+        <PleaseDescribe>Please describe what you liked or disliked about this game and whether you recommend it to others.<br></br>
         Please remember to be polite and follow the <RulesGuides href="https://support.steampowered.com/kb_article.php?ref=4045-USHJ-3810">Rules and Guidelines</RulesGuides></PleaseDescribe>
         <UserAvatar src="https://userreviewicons.s3.us-east-2.amazonaws.com/BMIcon.jpg"></UserAvatar>
         <AddCommentBox onSubmit={this.handleSubmit} onChange={this.handleChange}></AddCommentBox>
