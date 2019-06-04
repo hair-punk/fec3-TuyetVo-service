@@ -36,7 +36,7 @@ class App extends React.Component {
   submit(data) {
     axios.post("http://localhost:3007", data)
       .then(res => {
-        this.get();
+        this.get({reviews});
         console.log(res);
       })
       .catch(err => {
