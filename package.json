@@ -40,7 +40,7 @@
     "babel-loader": "^8.0.6",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor.git",
     "jest": "^24.8.0",
-    "mocha": "^6.1.4",
+    "mocha": "^10.2.0",
     "mongoose-seedr": "^0.4.4",
     "nodemon": "^1.19.1",
     "webpack-cli": "^3.3.2"
